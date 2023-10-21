@@ -15,7 +15,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {'message': 'Hello, World from FastAPI Microservice 1!'}
+    return {'message': 'Hello, World from FastAPI Microservice 2!'}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8011)
+    uvicorn.run(app, host="0.0.0.0", port=8011)
