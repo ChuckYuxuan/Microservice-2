@@ -87,7 +87,7 @@ async def view_textbook_async(id):
 
 @app.route('/api/textbook/sync_view/<id>')
 async def view_textbook_sync(id):
-    result = await instance.get_book_async(id)
+    result = await instance.get_book_sync(id)
     if result:
         return render_template('view_book.html', book=result['book']['book'],  sale=result['sale']['sale'])
 

@@ -56,15 +56,16 @@ class TextbookResource:
 
             # print("\nFull Result = ", json.dumps(full_result, indent=2))
 
-    async def get_book_sync(self):
+    async def get_book_sync(self, id):
         full_result = None
         start_time = time.time()
 
         full_result = {}
 
         for r in TextbookResource.resources:
-            response = requests.get(r["url"])
+            response = requests.get(r["url"] + id)
             full_result[r["resource"]] = response.json()
+            print("URL ", r["url"] + id, "returned", full_result[r["resource"]])
         end_time = time.time()
         full_result["elapsed_time"] = end_time - start_time
 
