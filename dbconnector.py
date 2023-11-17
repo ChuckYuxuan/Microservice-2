@@ -37,7 +37,7 @@ def mock_data():
 
     for _ in range(20):
         order_id = fake.uuid4()
-        book_id = random.choice(books_ids)[0]  # 从已有的books中随机选择一个book_id
+        book_id = random.choice(books_ids)[0]
         customer_name = fake.name()
         address = fake.address()
         phone_number = fake.phone_number()
