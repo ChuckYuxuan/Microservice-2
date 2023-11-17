@@ -89,6 +89,7 @@ async def view_textbook_async(id):
 async def view_textbook_sync(id):
     result = await instance.get_book_sync(id)
     if result:
+        print(result)
         return render_template('view_book.html', book=result['book']['book'],  sale=result['sale']['sale'])
 
     return jsonify({'error': 'Book not found'})
