@@ -31,7 +31,7 @@ def mock_data():
     conn_books.close()
 
     order_data = []
-    conn_books = duckdb.connect('./resources/books.db', read_only=True)
+    conn_books = duckdb.connect('./resources/books.db', read_only=False)
     books_ids = conn_books.execute("SELECT id FROM books").fetchall()
     conn_books.close()
 
@@ -49,6 +49,30 @@ def mock_data():
     conn_orders = duckdb.connect('./resources/books.db', read_only=False)
     conn_orders.executemany("INSERT INTO orders VALUES (?, ?, ?, ?, ?, ?, ?)", order_data)
     conn_orders.close()
+
+
+# from google.cloud import storage
+# import os
+
+
+# def download_blob(bucket_name, source_blob_name, destination_file_name):
+#     """Downloads a blob from the bucket."""
+#     storage_client = storage.Client()
+#     bucket = storage_client.bucket(bucket_name)
+#     blob = bucket.blob(source_blob_name)
+#     blob.download_to_filename(destination_file_name)
+#
+#
+# def get_db_conn():
+#     bucket_name = os.environ.get('BUCKET_NAME')
+#     db_file = 'books.db'  # Name of your database file in the bucket
+#     temp_db_path = '/tmp/books.db'
+#
+#     download_blob(bucket_name, db_file, temp_db_path)
+#
+#     # Now, connect to the database using the temporary path
+#     conn = duckdb.connect(temp_db_path, read_only=False)
+#     return conn
 
 
 def get_db_conn():
