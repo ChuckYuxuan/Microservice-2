@@ -18,11 +18,11 @@ class TextbookResource:
     resources = [
         {
             "resource": "book",
-            "url": 'http://0.0.0.0:5000/get_book_info_json/'
+            "url": 'http://0.0.0.0:5001/get_book_info_json/'
         },
         {
             "resource": "sale",
-            "url": 'http://0.0.0.0:5000/get_book_sale_json/'
+            "url": 'http://0.0.0.0:5001/get_book_sale_json/'
         }
     ]
 
