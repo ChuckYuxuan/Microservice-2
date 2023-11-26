@@ -13,8 +13,8 @@
     <h2>{% if keyword %}Search Results:{% endif %}</h2>
     <ul>
         {% for book in books %}
-        <li><a href="/api/textbook/async_view/{{ book[0] }}">{{ book[1] }}</a> by {{ book[2] }} ({{ book[3] }})</li>
-<!--        <li><a href="/api/textbook/sync_view/{{ book[0] }}">{{ book[1] }}</a> by {{ book[2] }} ({{ book[3] }})</li>-->
+<!--        <li><a href="/api/textbook/async_view/{{ book[0] }}">{{ book[1] }}</a> by {{ book[2] }} ({{ book[3] }})</li>-->
+        <li><a href="/api/textbook/sync_view/{{ book[0] }}">{{ book[1] }}</a> by {{ book[2] }} ({{ book[3] }})</li>
         {% endfor %}
     </ul>
 
