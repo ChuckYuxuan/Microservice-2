@@ -3,9 +3,11 @@ import random
 import uuid
 
 from flask import Flask, render_template, request, redirect, jsonify
+from flask_graphql import GraphQLView
 
 from dbconnector import get_db_conn, close_conn, init_db, mock_data
 from resources.book_resource import TextbookResource
+from resources.graphql_schema import schema
 
 app = Flask(__name__)
 PER_PAGE = 5
@@ -79,7 +81,6 @@ def search_book():
 async def view_textbook_async(id):
     result = await instance.get_book_async(id)
     if result:
-        print(result)
         return render_template('view_book.html', book=result['book']['book'], sale=result['sale']['sale'])
 
     return jsonify({'error': 'Book not found'})
@@ -89,7 +90,6 @@ async def view_textbook_async(id):
 async def view_textbook_sync(id):
     result = await instance.get_book_sync(id)
     if result:
-        print(result)
         return render_template('view_book.html', book=result['book']['book'],  sale=result['sale']['sale'])
 
     return jsonify({'error': 'Book not found'})
@@ -154,8 +154,15 @@ def get_book_sale_json(id):
     close_conn(conn)
     return jsonify({'sale': sale})
 
+## use graphql to search books
+app.add_url_rule('/api/textbook/graphql_search', view_func=GraphQLView.as_view(
+    'graphql',
+    schema=schema,
+    graphiql=True,
+))
+
 
 if __name__ == '__main__':
     init_db()
     # mock_data()
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=5002)

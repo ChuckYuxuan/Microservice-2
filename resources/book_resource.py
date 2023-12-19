@@ -18,11 +18,11 @@ class TextbookResource:
     resources = [
         {
             "resource": "book",
-            "url": 'http://0.0.0.0:5001/get_book_info_json/'
+            "url": 'http://0.0.0.0:5002/get_book_info_json/'
         },
         {
             "resource": "sale",
-            "url": 'http://0.0.0.0:5001/get_book_sale_json/'
+            "url": 'http://0.0.0.0:5002/get_book_sale_json/'
         }
     ]
 
@@ -51,10 +51,9 @@ class TextbookResource:
                 full_result[response["resource"]] = response["data"]
             end_time = time.time()
             full_result["elapsed_time"] = end_time - start_time
-
+            print("Async method callback.\n")
             return full_result
 
-            # print("\nFull Result = ", json.dumps(full_result, indent=2))
 
     async def get_book_sync(self, id):
         full_result = None
@@ -68,5 +67,5 @@ class TextbookResource:
             print("URL ", r["url"] + id, "returned", full_result[r["resource"]])
         end_time = time.time()
         full_result["elapsed_time"] = end_time - start_time
-
+        print("Sync method callback.\n")
         return full_result
