@@ -161,6 +161,16 @@ app.add_url_rule('/api/textbook/graphql_search', view_func=GraphQLView.as_view(
     graphiql=True,
 ))
 
+# query example
+# {
+#   books(title: "d") {
+#     id
+#     title
+#     author
+#   	year
+#     details
+#   }
+# }
 
 if __name__ == '__main__':
     init_db()
